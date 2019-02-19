@@ -6,8 +6,8 @@ from keras.layers import Flatten, Dense
 
 ### Read the data from the csv file
 lines = []
-#with open('/home/workspace/CarND-Behavioral-Cloning-P3/data/driving_log.csv') as csvfile:
-with open('../../../../opt/carnd_p3/data/driving_log.csv') as csvfile:
+#with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_new/driving_log.csv') as csvfile:
+with open('data/driving_log.csv') as csvfile:
   render = csv.reader(csvfile)
   for line in render:
     lines.append(line)
@@ -23,7 +23,7 @@ for line in lines:
   source_path=line[0]
   #print(source_path)
   filename = source_path.split('/')[-1]
-  current_path = '../data/IMG/'+filename
+  current_path = '../data_1/IMG/'+filename
   image = cv2.imread(current_path)
   #print(image)
   images.append(image)
