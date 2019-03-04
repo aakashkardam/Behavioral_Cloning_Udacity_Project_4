@@ -2,7 +2,7 @@ import csv
 import cv2
 import numpy as np
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Conv2D
+from keras.layers import Flatten, Dense, Lambda, Conv2D, Cropping2D
 import matplotlib.pyplot as plt
 
 ### Read the data from the csv file
@@ -24,6 +24,7 @@ with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_1/driving_log.csv') 
 images = [] #----------------------------- stores the training images (features)                 
 measurements = [] #----------------------- stores the steering angle (label)
 for line in lines:
+  #for i in range(3): # using multiple cameras. try this later
   source_path=line[0]
   #print(source_path)
   filename = source_path.split('/')[-1]
@@ -52,6 +53,7 @@ y_train = np.array(augmented_measurements) #-------- converts the steering data 
 #plt.show()
 #model = Sequential()
 #model.add(Lambda(lambda x: x/255 - 0.5, input_shape=(160,320,3)))
+#model.add(Cropping2D(cropping=((70,25),(0,0))))
 #model.add(Conv2D(24, 5, 5, activation='relu', subsample=(2, 2)))
 #model.add(Conv2D(36, 5, 5, activation='relu', subsample=(2, 2)))
 #model.add(Conv2D(48, 5, 5, activation='relu', subsample=(2, 2)))
