@@ -24,17 +24,22 @@ with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_1/driving_log.csv') 
 images = [] #----------------------------- stores the training images (features)                 
 measurements = [] #----------------------- stores the steering angle (label)
 for line in lines:
-  #for i in range(3): # using multiple cameras. try this later
-  source_path=line[0]
-  #print(source_path)
-  filename = source_path.split('/')[-1]
-  #current_path = 'data/IMG/'+filename # use this in GPU mode
-  current_path = 'data_1/IMG/'+filename # use this in CPU mode
-  image = cv2.imread(current_path)
-  #print(image)
-  images.append(image)
-  measurement = float(line[3])
-  measurements.append(measurement)
+  for i in range(3): # using multiple cameras. try this later
+    source_path=line[i]
+    #print(source_path)
+    filename = source_path.split('/')[-1]
+    #current_path = 'data/IMG/'+filename # use this in GPU mode
+    current_path = 'data_1/IMG/'+filename # use this in CPU mode
+    image = cv2.imread(current_path)
+    #print(image)
+    images.append(image)
+    measurement = float(line[3])
+    if (i==1):
+      measurements.append(measurement + 0.2)
+    elif (i==2):
+      measurements.append(measurement - 0.2)
+    else:
+      measurements.append(measurement)
 
 ### Data AUgmentation : flip images
 augmented_images, augmented_measurements = [], []
@@ -66,4 +71,4 @@ y_train = np.array(augmented_measurements) #-------- converts the steering data 
 #model.add(Dense(1))
 #model.compile(loss='mse', optimizer='adam')
 #model.fit(X_train,y_train,validation_split=0.2,shuffle=True,epochs=10)
-#model.save('model_regression_Udacity_data2.h5')
+#model.save('model_regression_Udacity_data3.h5')
