@@ -8,14 +8,19 @@ import matplotlib.pyplot as plt
 ### Read the data from the csv file
 lines = []
 #with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_new/driving_log.csv') as csvfile:
-#with open('/home/workspace/CarND-Behavioral-Cloning-P3/data/driving_log.csv') as csvfile:#use this in GPU mode
-with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_1/driving_log.csv') as csvfile:# use this in CPU mode
-#with open('data_1/driving_log.csv') as csvfile:
+with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_new/driving_log.csv') as csvfile:#use this in GPU mode
+#with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_1/driving_log.csv') as csvfile:# use this in CPU mode
   next(csvfile)
   render = csv.reader(csvfile)
   for line in render:
     lines.append(line)
-    #print(line[0],"" ,line[3]) 
+
+lines1 = []
+with open('/home/workspace/CarND-Behavioral-Cloning-P3/Additional_Data_turns/driving_log.csv') as csvfile2:
+  render = csv.reader(csvfile2)
+  for line in render:
+    lines1.append(line)
+ 
   
 
 #print(len(lines))
@@ -28,18 +33,42 @@ for line in lines:
     source_path=line[i]
     #print(source_path)
     filename = source_path.split('/')[-1]
-    #current_path = 'data/IMG/'+filename # use this in GPU mode
-    current_path = 'data_1/IMG/'+filename # use this in CPU mode
+    current_path = 'data_new/IMG/'+filename # use this in GPU mode
+    #current_path = 'data_1/IMG/'+filename # use this in CPU mode
     image = cv2.imread(current_path)
     #print(image)
     images.append(image)
     measurement = float(line[3])
     if (i==1):
-      measurements.append(measurement + 0.2)
+      measurements.append(measurement + 0.05)
     elif (i==2):
-      measurements.append(measurement - 0.2)
+      measurements.append(measurement - 0.05)
     else:
       measurements.append(measurement)
+
+
+for line in lines1:
+  for i in range(3): # using multiple cameras. try this later
+    source_path=line[i]
+    #print(source_path)
+    filename = source_path.split('/')[-1]
+    current_path = 'Additional_Data_turns/IMG/'+filename # use this in GPU mode
+    #current_path = 'data_1/IMG/'+filename # use this in CPU mode
+    image = cv2.imread(current_path)
+    #print(image)
+    images.append(image)
+    measurement = float(line[3])
+    if (i==1):
+      measurements.append(measurement + 0.05)
+    elif (i==2):
+      measurements.append(measurement - 0.05)
+    else:
+       measurements.append(measurement)
+
+
+
+
+
 
 ### Data AUgmentation : flip images
 augmented_images, augmented_measurements = [], []
@@ -56,19 +85,19 @@ y_train = np.array(augmented_measurements) #-------- converts the steering data 
 #print(X_train.shape)
 #plt.hist(y_train)
 #plt.show()
-#model = Sequential()
-#model.add(Lambda(lambda x: x/255 - 0.5, input_shape=(160,320,3)))
-#model.add(Cropping2D(cropping=((70,25),(0,0))))
-#model.add(Conv2D(24, 5, 5, activation='relu', subsample=(2, 2)))
-#model.add(Conv2D(36, 5, 5, activation='relu', subsample=(2, 2)))
-#model.add(Conv2D(48, 5, 5, activation='relu', subsample=(2, 2)))
-#model.add(Conv2D(64, 3, 3, activation='relu'))
-#model.add(Conv2D(64, 3, 3, activation='relu'))
-#model.add(Flatten())
-#model.add(Dense(100, activation='relu'))
-#model.add(Dense(50, activation='relu'))
-#model.add(Dense(10, activation='relu'))
-#model.add(Dense(1))
-#model.compile(loss='mse', optimizer='adam')
-#model.fit(X_train,y_train,validation_split=0.2,shuffle=True,epochs=10)
-#model.save('model_regression_Udacity_data3.h5')
+model = Sequential()
+model.add(Lambda(lambda x: x/255 - 0.5, input_shape=(160,320,3)))
+model.add(Cropping2D(cropping=((70,25),(0,0))))
+model.add(Conv2D(24, 5, 5, activation='relu', subsample=(2, 2)))
+model.add(Conv2D(36, 5, 5, activation='relu', subsample=(2, 2)))
+model.add(Conv2D(48, 5, 5, activation='relu', subsample=(2, 2)))
+model.add(Conv2D(64, 3, 3, activation='relu'))
+model.add(Conv2D(64, 3, 3, activation='relu'))
+model.add(Flatten())
+model.add(Dense(100, activation='relu'))
+model.add(Dense(50, activation='relu'))
+model.add(Dense(10, activation='relu'))
+model.add(Dense(1))
+model.compile(loss='mse', optimizer='adam')
+model.fit(X_train,y_train,validation_split=0.2,shuffle=True,epochs=5)
+model.save('model_regression_Udacity_data5.h5')
