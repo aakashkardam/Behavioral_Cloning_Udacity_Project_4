@@ -6,8 +6,10 @@ from keras.layers import Flatten, Dense, Lambda, Conv2D
 
 ### Read the data from the csv file
 lines = []
-with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_new/driving_log.csv') as csvfile:
+#with open('/home/workspace/CarND-Behavioral-Cloning-P3/data_new/driving_log.csv') as csvfile:
+with open('/home/workspace/CarND-Behavioral-Cloning-P3/data/driving_log.csv') as csvfile:
 #with open('data_1/driving_log.csv') as csvfile:
+  next(csvfile)
   render = csv.reader(csvfile)
   for line in render:
     lines.append(line)
@@ -23,7 +25,7 @@ for line in lines:
   source_path=line[0]
   #print(source_path)
   filename = source_path.split('/')[-1]
-  current_path = '../data/IMG/'+filename
+  current_path = 'data/IMG/'+filename
   image = cv2.imread(current_path)
   #print(image)
   images.append(image)
@@ -49,4 +51,4 @@ model.add(Dense(10, activation='relu'))
 model.add(Dense(1))
 model.compile(loss='mse', optimizer='adam')
 model.fit(X_train,y_train,validation_split=0.2,shuffle=True,epochs=10)
-model.save('model_regression_Udacity_data.h5')
+model.save('model_regression_Udacity_data2.h5')
