@@ -42,6 +42,11 @@ As such I focussed on collecting 2 laps of data where I tried to keep the car in
 
 After collecting all the data, I used data augmenting techniques like cropping the upper part of the image which basically had sky, trees and the other objects in the scene which aren't relevant. I tried flipping images left to right along with changing signs of the corresponding measurements. I also experimented with using images from different cameras on the car, the left and the right one by adding a correction factor (0.05) to the steering measurement, adding it to the left camera image and subtracting from the right camera image.
 
+After the collection process, I had X number of data points. I then preprocessed this data by ...
+I finally randomly shuffled the data set and put Y% of the data into a validation set.
+
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+
 Once I had the data preprocessing/augmenting part done, I implemented the neural network with the architecture described below to train the model. I trained 5 models with differnt performances. The performance got better from the first model to the last one.
 
 ### Random Images from the Dataset
@@ -87,13 +92,11 @@ The model was trained and validated on different data sets to ensure that the mo
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. I used the left and the right camera images also for training. I used a correction factor of 0.05 and arrived at it after experimenting with a number of factors so that the car drives smoothly.
 
 
-![AutonomousMode](AutonomousModeImages.png)
-The following images are snapshots taken from the video created in the fully autonomous mode on the track1.
 #### 1. Solution Design Approach
 
-The overall strategy for deriving a model architecture was to ...
+The overall strategy for deriving a model architecture was to initially see if a basic model runs and the car can move in the autonomous mode and not to worry about how badly it performs but to get the pipeline sorted and working correctly. Then the next task is to improve the model in order to make it drive smoothy.
 
-My first step was to use a convolution neural network model similar to the LeNet as implemented in the previous project (Traffic sign classifier project), I lookedin to the model Nvidia uses for their self driving car and worked from there.
+My first step was to use a convolution neural network model similar to the LeNet as implemented in the previous project (Traffic sign classifier project), I looked in to the model Nvidia uses for their self driving car and worked from there.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
@@ -101,33 +104,9 @@ To combat the overfitting, I modified the model so that the loss and the validat
 
 The final step was to run the simulator to see how well the car was driving around track one. There were a few spots where the vehicle fell off the track and went off road. This happened quite a lot at the sharp turns. This suggested that I need to collect more general data for the sharper turns/ curves on the track so I recorded more samples of data with the sharp turns both by keeping the car in the middle and near the edge of the road.
 
-At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road.
+At the end of the process, the vehicle is able to drive autonomously around the track without leaving the road. The images below show some of the snapshots from the video created in autonomous mode.
 
+![AutonomousMode](AutonomousModeImages.png)
+The images are snapshots taken from the video created in the fully autonomous mode on the track1.
 
-#### 3. Creation of the Training Set & Training Process
-
-To capture good driving behavior, I first recorded two laps on track one using center lane driving. Here is an example image of center lane driving:
-
-![alt text][image2]
-
-I then recorded the vehicle recovering from the left side and right sides of the road back to center so that the vehicle would learn to .... These images show what a recovery looks like starting from ... :
-
-![alt text][image3]
-![alt text][image4]
-![alt text][image5]
-
-Then I repeated this process on track two in order to get more data points.
-
-To augment the data sat, I also flipped images and angles thinking that this would ... For example, here is an image that has then been flipped:
-
-![alt text][image6]
-![alt text][image7]
-
-Etc ....
-
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-
-
-I finally randomly shuffled the data set and put Y% of the data into a validation set. 
-
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+####
