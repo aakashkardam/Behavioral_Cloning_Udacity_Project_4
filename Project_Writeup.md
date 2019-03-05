@@ -43,10 +43,9 @@ As such I focussed on collecting 2 laps of data where I tried to keep the car in
 
 After collecting all the data, I used data augmenting techniques like cropping the upper part of the image which basically had sky, trees and the other objects in the scene which aren't relevant. I tried flipping images left to right along with changing signs of the corresponding measurements. I also experimented with using images from different cameras on the car, the left and the right one by adding a correction factor (0.05) to the steering measurement, adding it to the left camera image and subtracting from the right camera image.
 
-After the collection process (before augmenting), I had X number of data points. I then preprocessed this data by ...
-I finally randomly shuffled the data set and put 20% of the data into a validation set.
+After the collection process (including augmenting), I had 39138 number of data points (samples). I finally randomly shuffled the data set and put 20% of the data into a validation set. So, finally I trained on 31310 samples and validated on 7828 samples.
 
-I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
+I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I started with default 10 epochs that keras use and reduced it to 5 which was good enough to produce a model which drove the car autonomously on track 1. I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
 Once I had the data preprocessing/augmenting part done, I implemented the neural network with the architecture described below to train the model. I trained 5 models with differnt performances. The performance got better from the first model to the last one.
 
@@ -117,5 +116,7 @@ I learnt quite a lot on this project, especially how important it is to get good
 I have also included the samplerun.log file in case anyone wants to look at the output. The corresponding model file is also added to this repository titled `model_sample.h5`.
 
 I also faced a lot of difficulties like memory issues when the size of dataset increased to more than 50000 images, some of these issues are outlined and discussed [here](https://stackoverflow.com/questions/43147983/could-not-create-cudnn-handle-cudnn-status-internal-error). As such I reduced the training data to only 2 laps and additional data for the sharp turns. I ended up training my model on 31310 samples and validate on 7828 samples as discussed before.
+
+When using the images from the multiple cameras : left and right. It needs a little bit of experimentation to tune the steering correction factor and requires lot of patience.
 
 In general the sharp turns on the track was a challenge. I have tested my model on the track 2 but it doesn't perform as well and needs further improvement and better data collection. This is one of the near future goals to achieve fully autonomous level on the track 2.
