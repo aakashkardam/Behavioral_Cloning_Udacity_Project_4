@@ -42,8 +42,8 @@ As such I focussed on collecting 2 laps of data where I tried to keep the car in
 
 After collecting all the data, I used data augmenting techniques like cropping the upper part of the image which basically had sky, trees and the other objects in the scene which aren't relevant. I tried flipping images left to right along with changing signs of the corresponding measurements. I also experimented with using images from different cameras on the car, the left and the right one by adding a correction factor (0.05) to the steering measurement, adding it to the left camera image and subtracting from the right camera image.
 
-After the collection process, I had X number of data points. I then preprocessed this data by ...
-I finally randomly shuffled the data set and put Y% of the data into a validation set.
+After the collection process (before augmenting), I had X number of data points. I then preprocessed this data by ...
+I finally randomly shuffled the data set and put 20% of the data into a validation set.
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. The ideal number of epochs was Z as evidenced by ... I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
@@ -58,9 +58,9 @@ Random images from the data set captured by recording in the Udacity simulator. 
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with 5x5 filter sizes and depths between 32 and 128 (model.py lines 18-24) 
+My model consists of a convolution neural network with  
 
-The model includes RELU layers to introduce nonlinearity (code line 20), and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The model includes RELU layers to introduce nonlinearity.....lines....., and the data is normalized in the model using a Keras lambda layer (code line 18). 
 
 My final model consisted of the following layers:
 
@@ -87,12 +87,12 @@ the sequential model architecture described above is compiled with a mean square
 The model was trained and validated on different data sets to ensure that the model was not overfitting. The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track. It was thoroughly tested in the autonomous mode for a couple of laps on the track 1.
 
 
-#### 4. Appropriate training data
+#### 3. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. I used the left and the right camera images also for training. I used a correction factor of 0.05 and arrived at it after experimenting with a number of factors so that the car drives smoothly.
 
 
-#### 1. Solution Design Approach
+#### 4. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to initially see if a basic model runs and the car can move in the autonomous mode and not to worry about how badly it performs but to get the pipeline sorted and working correctly. Then the next task is to improve the model in order to make it drive smoothy.
 
@@ -109,4 +109,8 @@ At the end of the process, the vehicle is able to drive autonomously around the 
 ![AutonomousMode](AutonomousModeImages.png)
 The images are snapshots taken from the video created in the fully autonomous mode on the track1.
 
-####
+#### 5. Conclusion
+
+I learnt quite a lot on this project, especially how important it is to get good data for training. Despite having all the elements of your Neural Network architecture right in place, if you don't have a good enough data to compliment it the results are going to be far from perfect. In essence I learnt how each component of the workflow in a typical deep learning problem is extermely crucial an has to be in good coherence with each other. 
+
+I also faced a lot of difficulties like memory issues when the size of dataset increased to more than 50000 images, some of these issues are outlined and discussed [here](https://stackoverflow.com/questions/43147983/could-not-create-cudnn-handle-cudnn-status-internal-error)
