@@ -41,7 +41,7 @@ The project requires one to collect the data by maually driving a car in the sim
 
 As such I focussed on collecting 2 laps of data where I tried to keep the car in the middle of the road. Later on, I ended up generating more data for sharper turns on the road.
 
-After collecting all the data, I used data augmenting techniques like cropping the upper part of the image which basically had sky, trees and the other objects in the scene which aren't relevant. I tried flipping images left to right along with changing signs of the corresponding measurements. I also experimented with using images from different cameras on the car, the left and the right one by adding a correction factor (0.05) to the steering measurement, adding it to the left camera image and subtracting from the right camera image.
+After collecting all the data, I used data augmenting techniques like cropping the upper part of the image which basically had sky, trees, hills and the other objects in the scene which aren't relevant and more of a distraction for the model. I tried flipping images left to right along with changing signs of the corresponding measurements. I also experimented with using images from different cameras on the car, the left and the right one by adding a correction factor (0.05) to the steering measurement, adding it to the left camera image and subtracting from the right camera image.
 
 After the collection process (including augmenting), I had 39138 number of data points (samples). I finally randomly shuffled the data set and put 20% of the data into a validation set. So, finally I trained on 31310 samples and validated on 7828 samples.
 
@@ -58,9 +58,9 @@ Random images from the data set captured by recording in the Udacity simulator. 
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with  
+My model consists of a convolution neural network with  5 convolutional layers, 3 of them using 5x5 filter and the reamaning 2 using 3x3 filter. I also use 4 FUlly connected layers with 100, 50, 10 and 1 units in them respectively. The model is summarized below in more detail.
 
-The model includes RELU layers to introduce nonlinearity.....lines....., and the data is normalized in the model using a Keras lambda layer (code line 18). 
+The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (code line 82). 
 
 My final model consisted of the following layers:
 
@@ -68,7 +68,7 @@ My final model consisted of the following layers:
 |:---------------------:|:-----------------------------------------------------------------:|
 | Input                         | 160x320x3 RGB image                                                                     |
 | Lambda Layer          | to normalize the data |
-| Cropping 2D layer     | crops the image from the top, upto 70 pixels and 25 piexls from the bottsom |
+| Cropping 2D layer     | crops the image from the top, upto 70 pixels and 25 pixels from the bottsom |
 | Convolutional Layer-1 | 5x5 filter, 24 units, relu activation, 2x2 subsampling |
 | Convolutional Layer-2 | 5x5 filter, 36 units, relu activation, 2x2 subsampling | 
 | Convolutional Layer-3 | 5x5 filter, 48 units, relu activation, 2x2 subsampling |
