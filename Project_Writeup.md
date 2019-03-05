@@ -46,7 +46,8 @@ Once I had the data preprocessing/augmenting part done, I implemented the neural
 
 ### Random Images from the Dataset
 ![LeftCameraImage](LeftCameraImage.png)
-
+![CenterCameraImage](CenterCameraImage.png)
+![RightCameraImage](RightCameraImage.png)
 ### Model Architecture and Training Strategy
 
 #### 1. An appropriate model architecture has been employed
