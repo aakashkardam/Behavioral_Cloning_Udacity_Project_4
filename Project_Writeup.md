@@ -96,7 +96,7 @@ Training data was chosen to keep the vehicle driving on the road. I used a combi
 
 The overall strategy for deriving a model architecture was to initially see if a basic model runs and the car can move in the autonomous mode and not to worry about how badly it performs but to get the pipeline sorted and working correctly. Then the next task is to improve the model in order to make it drive smoothy.
 
-My first step was to use a convolution neural network model similar to the LeNet as implemented in the previous project (Traffic sign classifier project), I looked in to the model Nvidia uses for their self driving car and worked from there.
+My first step was to use a convolution neural network model similar to the LeNet as implemented in the previous project [Traffic Sign CLassifier](https://github.com/aakashkardam/Traffic_Sign_Classifier_Udacity_Project_3) and taking the hint from there, I also looked in to the model Nvidia uses for their self driving car and worked from there.
 
 In order to gauge how well the model was working, I split my image and steering angle data into a training and validation set. I found that my first model had a low mean squared error on the training set but a high mean squared error on the validation set. This implied that the model was overfitting. 
 
