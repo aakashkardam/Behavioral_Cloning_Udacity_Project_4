@@ -22,7 +22,7 @@ My project includes the following files:
 * model.py containing the script to create and train the model
 * drive.py for driving the car in autonomous mode
 * model.h5 containing a trained convolution neural network 
-* Project_Writeup.md summarizing the results
+* Project_Writeup.md summarizing the results (you're reading it)
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
@@ -47,7 +47,7 @@ After the collection process (including augmenting), I had 39138 number of data 
 
 I used this training data for training the model. The validation set helped determine if the model was over or under fitting. I started with default 10 epochs that keras use and reduced it to 5 which was good enough to produce a model which drove the car autonomously on track 1. I used an adam optimizer so that manually training the learning rate wasn't necessary.
 
-Once I had the data preprocessing/augmenting part done, I implemented the neural network with the architecture described below to train the model. I trained 5 models with differnt performances. The performance got better from the first model to the last one.
+Once I had the data preprocessing/augmenting part done, I implemented the neural network with the architecture described below to train the model. I trained 5 models with different performances. The performance got better from the first model to the last one.
 
 ### Random Images from the Dataset
 ![LeftCameraImage](LeftCameraImage.png)
@@ -58,7 +58,7 @@ Random images from the data set captured by recording in the Udacity simulator. 
 
 #### 1. An appropriate model architecture has been employed
 
-My model consists of a convolution neural network with  5 convolutional layers, 3 of them using 5x5 filter and the reamaning 2 using 3x3 filter. I also use 4 FUlly connected layers with 100, 50, 10 and 1 units in them respectively. The model is summarized below in more detail.
+My model consists of a convolution neural network with  5 convolutional layers, 3 of them using 5x5 filter and the remaning 2 using 3x3 filter. I also use 4 fully connected layers with 100, 50, 10 and 1 units in them respectively. The model is summarized below in more detail.
 
 The model includes RELU layers to introduce nonlinearity, and the data is normalized in the model using a Keras lambda layer (code line 82). 
 
@@ -68,7 +68,7 @@ My final model consisted of the following layers:
 |:---------------------:|:-----------------------------------------------------------------:|
 | Input                         | 160x320x3 RGB image                                                                     |
 | Lambda Layer          | to normalize the data |
-| Cropping 2D layer     | crops the image from the top, upto 70 pixels and 25 pixels from the bottsom |
+| Cropping 2D layer     | crops the image from the top, upto 70 pixels and 25 pixels from the bottom |
 | Convolutional Layer-1 | 5x5 filter, 24 units, relu activation, 2x2 subsampling |
 | Convolutional Layer-2 | 5x5 filter, 36 units, relu activation, 2x2 subsampling | 
 | Convolutional Layer-3 | 5x5 filter, 48 units, relu activation, 2x2 subsampling |
