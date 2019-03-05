@@ -48,6 +48,7 @@ Once I had the data preprocessing/augmenting part done, I implemented the neural
 ![LeftCameraImage](LeftCameraImage.png)
 ![CenterCameraImage](CenterCameraImage.png)
 ![RightCameraImage](RightCameraImage.png)
+Random images from the data set captured by recording in the Udacity simulator. Images from left camera(top), center camera (middle) and right camera (bottom).
 ### Model Architecture and Training Strategy
 
 #### 1. An appropriate model architecture has been employed
@@ -74,21 +75,20 @@ My final model consisted of the following layers:
 | Fully Connected Layer-3 | 10 units, relu activation  |
 | Fully Connected Layer-4 | 1 unit as output           |
 
-the sequential model architecture described above is compiled with a mean squared error and the adam optimizer. The network is trained with 5 epochs and using default values for other parameters like learning rate. This number was reduced from 10 epochs which were initially used. Reducing epochs trained the model faster. 
+the sequential model architecture described above is compiled with a mean squared error and the adam optimizer. The network is trained with 5 epochs and using default values for other parameters like learning rate. This number was reduced from 10 epochs which were initially used. Reducing epochs trained the model faster. The model used an adam optimizer, so the learning rate was not tuned manually. 
 
 #### 2. Attempts to reduce overfitting in the model
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting. The model was tested by running it through the simulator and ensuring that the vehicle could stay on the track. It was thoroughly tested in the autonomous mode for a couple of laps on the track 1.
 
-#### 3. Model parameter tuning
-
-The model used an adam optimizer, so the learning rate was not tuned manually.
 
 #### 4. Appropriate training data
 
 Training data was chosen to keep the vehicle driving on the road. I used a combination of center lane driving, recovering from the left and right sides of the road. I used the left and the right camera images also for training. I used a correction factor of 0.05 and arrived at it after experimenting with a number of factors so that the car drives smoothly.
 
 
+![AutonomousMode](AutonomousModeImages.png)
+The following images are snapshots taken from the video created in the fully autonomous mode on the track1.
 #### 1. Solution Design Approach
 
 The overall strategy for deriving a model architecture was to ...
