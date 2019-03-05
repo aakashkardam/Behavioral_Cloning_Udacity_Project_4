@@ -44,6 +44,9 @@ After collecting all the data, I used data augmenting techniques like cropping t
 
 Once I had the data preprocessing/augmenting part done, I implemented the neural network with the architecture described below to train the model. I trained 5 models with differnt performances. The performance got better from the first model to the last one.
 
+### Random Images from the Dataset
+![LeftCameraImage](LeftCameraImage.png)
+
 ### Model Architecture and Training Strategy
 
 #### 1. An appropriate model architecture has been employed
