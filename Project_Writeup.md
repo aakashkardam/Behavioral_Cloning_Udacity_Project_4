@@ -29,6 +29,7 @@ Using the Udacity provided simulator and my drive.py file, the car can be driven
 ```sh
 python drive.py model.h5
 ```
+Link to my project video: [here](https://github.com/aakashkardam/Behavioral_Cloning_Udacity_Project_4/blob/master/video.mp4)
 
 #### 3. Submission code is usable and readable
 
@@ -113,4 +114,8 @@ The images are snapshots taken from the video created in the fully autonomous mo
 
 I learnt quite a lot on this project, especially how important it is to get good data for training. Despite having all the elements of your Neural Network architecture right in place, if you don't have a good enough data to compliment it the results are going to be far from perfect. In essence I learnt how each component of the workflow in a typical deep learning problem is extermely crucial an has to be in good coherence with each other. 
 
-I also faced a lot of difficulties like memory issues when the size of dataset increased to more than 50000 images, some of these issues are outlined and discussed [here](https://stackoverflow.com/questions/43147983/could-not-create-cudnn-handle-cudnn-status-internal-error)
+I have also included the samplerun.log file in case anyone wants to look at the output. The corresponding model file is also added to this repository titled `model_sample.h5`.
+
+I also faced a lot of difficulties like memory issues when the size of dataset increased to more than 50000 images, some of these issues are outlined and discussed [here](https://stackoverflow.com/questions/43147983/could-not-create-cudnn-handle-cudnn-status-internal-error). As such I reduced the training data to only 2 laps and additional data for the sharp turns. I ended up training my model on 31310 samples and validate on 7828 samples as discussed before.
+
+In general the sharp turns on the track was a challenge. I have tested my model on the track 2 but it doesn't perform as well and needs further improvement and better data collection. This is one of the near future goals to achieve fully autonomous level on the track 2.
